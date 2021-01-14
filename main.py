@@ -1,35 +1,34 @@
 def RPN(request):
-  maththingy = request.split(' ')
-  otherthingy = []
+  requestList = request.split(' ')
+  stack = []
 
-  for i in range(0,len(maththingy)):
-    if isnumber(maththingy[i]) == True:
-      otherthingy.append(float(maththingy[i]))
-    elif maththingy[i] == '+':
-      otherthingy.append(otherthingy.pop() + otherthingy.pop())
-    elif maththingy[i] == '-':
-      last = otherthingy.pop()
-      first = otherthingy.pop()
-      otherthingy.append(first - last)
-    elif maththingy[i] == '*':
-      otherthingy.append(otherthingy.pop() * otherthingy.pop())
-    elif maththingy[i] == '/':
-      last = otherthingy.pop()
-      first = otherthingy.pop()
-      otherthingy.append(first / last)
-    elif maththingy[i] == 'x':
+  for i in range(0,len(requestList)):
+    if isnumber(requestList[i]) == True:
+      stack.append(float(requestList[i]))
+    elif requestList[i] == '+':
+      stack.append(stack.pop() + stack.pop())
+    elif requestList[i] == '-':
+      last = stack.pop()
+      first = stack.pop()
+      stack.append(first - last)
+    elif requestList[i] == '*':
+      stack.append(stack.pop() * stack.pop())
+    elif requestList[i] == '/':
+      last = stack.pop()
+      first = stack.pop()
+      stack.append(first / last)
+    elif requestList[i] == 'x':
       exit()
-    elif maththingy[i] == 'p':
-      print(otherthingy)
-    elif maththingy[i] == 'i':
-      otherthingy.append(1/otherthingy.pop())
-    elif maththingy[i] == 'n':
-      otherthingy.append(-1 * otherthingy.pop())
+    elif requestList[i] == 'p':
+      print(stack)
+    elif requestList[i] == 'i':
+      stack.append(1/stack.pop())
+    elif requestList[i] == 'n':
+      stack.append(-1 * stack.pop())
     else:
-        bunger = 1 
-        bunger += bunger
+        print("the requested input, ",requestList[i], "is invalid, if this is supposed to do something, contact Chris, if its not, then why did you put it in you blockhead \n" )
         
-  return otherthingy
+  return stack
 
 def isnumber(s):
     try:
