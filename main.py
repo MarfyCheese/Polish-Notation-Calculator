@@ -17,6 +17,14 @@ def RPN(request):
       last = otherthingy.pop()
       first = otherthingy.pop()
       otherthingy.append(first / last)
+    elif maththingy[i] == 'x':
+      exit()
+    elif maththingy[i] == 'p':
+      print(otherthingy)
+    elif maththingy[i] == 'i':
+      otherthingy.append(1/otherthingy.pop())
+    elif maththingy[i] == 'n':
+      otherthingy.append(-1 * otherthingy.pop())
     else:
         bunger = 1 
         bunger += bunger
